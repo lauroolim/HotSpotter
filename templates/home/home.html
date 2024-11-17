@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}HotSpotter{% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h1 class="mb-4">Bem-vindo ao HotSpotter</h1>
+    <p class="mb-4">Para continuar, faça login ou cadastre-se</p>
+    <a href="{% url 'login' %}" class="btn btn-primary me-2">Login</a>
+    <a href="{% url 'signup' %}" class="btn btn-secondary">Cadastrar-se</a>
+</div>
+{% endblock %}
