@@ -1,0 +1,75 @@
+<!-- map.html -->
+<div class="search-container">
+    <input id="pac-input" class="controls" type="text" placeholder="Enter a location">
+</div>
+<div id="map-container"></div>
+{{ rendered_widget|safe }}
+
+<style>
+    .search-container {
+        margin: 10px;
+    }
+    #pac-input {
+        width: 300px;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    #map-container {
+        height: 500px;
+        width: 100%;
+    }
+</style>
+
+<script>
+function initMap() {
+    var mapOptions = {
+      zoom: 14,
+      center: {lat: -10.2491, lng: -48.3243} 
+    };
+
+    var map = new google.maps.Map(document.getElementById('map-container'), mapOptions);
+
+    var input = document.getElementById('pac-input');
+    var searchBox = new google.maps.places.SearchBox(input);
+    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+    map.addListener('bounds_changed', function() {
+        searchBox.setBounds(map.getBounds());
+    });
+
+    var markers = [];
+    searchBox.addListener('places_changed', function() {
+        var places = searchBox.getPlaces();
+
+        if (places.length == 0) {
+            return;
+        }
+
+        markers.forEach(function(marker) {
+            marker.setMap(null);
+        });
+        markers = [];
+
+        var bounds = new google.maps.LatLngBounds();
+        places.forEach(function(place) {
+            if (!place.geometry) {
+                console.log("Returned place contains no geometry");
+                return;
+            }
+
+            markers.push(new google.maps.Marker({
+                map: map,
+                position: place.geometry.location
+            }));
+
+            if (place.geometry.viewport) {
+                bounds.union(place.geometry.viewport);
+            } else {
+                bounds.extend(place.geometry.location);
+            }
+        });
+        map.fitBounds(bounds);
+    });
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key={{ google_api_key }}&libraries=places&callback=initMap" async defer></script>

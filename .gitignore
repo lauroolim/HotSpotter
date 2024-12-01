@@ -1,4 +1,9 @@
-/venv
-
-
 .env
+
+*.pyc
+*/__pycache__/
+
+*/migrations/
+
+/static/images/reports/*
+

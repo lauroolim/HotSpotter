@@ -1,0 +1,19 @@
+.map-coordinate-input {
+  background-color: #e9ecef;
+  cursor: not-allowed;
+}
+
+.map-widget-container {
+  margin-bottom: 1rem;
+}
+
+#address_input {
+  margin-bottom: 10px;
+}
+
+#map_canvas {
+  width: 100%;
+  height: 400px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}

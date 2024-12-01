@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     "rest_framework.authtoken",
     "apps.reports",
     "apps.users",
+    "django.contrib.gis",
+    "mapwidgets",
 ]
 
 MIDDLEWARE = [
@@ -76,12 +78,31 @@ TEMPLATES = [
 WSGI_APPLICATION = "config.wsgi.application"
 
 
+MAP_WIDGETS = {
+    "GoogleMap": {
+        "apiKey": config("GOOGLE_API_KEY"),
+        "PointField": {
+            "interactive": {
+                "mapOptions": {
+                    "zoom": 15,
+                    "scrollwheel": False,
+                    "streetViewControl": True,
+                    "center": {"lat": -15.7942, "lng": -47.8822},
+                },
+                "GooglePlaceAutocompleteOptions": {
+                    "componentRestrictions": {"country": "br"}
+                },
+                "mapCenterLocationName": "Palmas"
+            },
+        },
+    },
+}
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
         "NAME": config("POSTGRES_DB"),
         "USER": "postgres",
         "PASSWORD": config("POSTGRES_PASSWORD"),
@@ -127,6 +148,10 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
+LOGIN_URL = '/auth/login/'
+
+LOGIN_REDIRECT_URL = "report"
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "../static"),
 ]
@@ -137,3 +162,5 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 GOOGLE_API_KEY = config("GOOGLE_API_KEY")
+
+AUTH_USER_MODEL = 'users.User'

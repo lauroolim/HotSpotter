@@ -19,3 +19,4 @@ setuptools==75.2.0
 sqlparse==0.4.1
 urllib3==1.26.4
 virtualenv==20.27.0
+djangorestframework-gis
