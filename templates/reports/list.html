@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Meus Relatórios{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Meus Relatórios</h2>
+
+    <p class="text-center">Usuário: <strong>{{ user.username }}</strong></p>
+
+    <div class="list-group">
+        {% for report in reports %}
+            <div class="list-group-item list-group-item-action mb-3">
+                <div class="d-flex w-100 justify-content-between align-items-center">
+                    <div>
+                        <h5 class="mb-1">{{ report.title }}</h5>
+                        <p class="mb-1">{{ report.description }}</p>
+                        <small class="text-muted">{{ report.address }}</small>
+                    </div>
+                    <div class="btn-group">
+                        <a href="{% url 'report-detail' report.id %}" class="btn btn-primary btn-sm">Detalhes</a>
+                        <form action="{% url 'delete-report' report.id %}" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir este relatório?');">Excluir</button>
+                        </form>
+                    </div>
+                </div>
+                <small class="text-muted">{{ report.created_at|date:"d/m/Y" }}</small>
+            </div>
+        {% empty %}
+            <p class="text-center">Você não possui relatórios.</p>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

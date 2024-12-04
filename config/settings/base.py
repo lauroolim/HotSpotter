@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "apps.users",
     "django.contrib.gis",
     "mapwidgets",
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
@@ -55,7 +56,13 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
 ]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8100",
+]
+
 
 ROOT_URLCONF = "config.urls"
 
@@ -77,6 +84,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "config.wsgi.application"
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}
 
 MAP_WIDGETS = {
     "GoogleMap": {
@@ -164,3 +176,5 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 GOOGLE_API_KEY = config("GOOGLE_API_KEY")
 
 AUTH_USER_MODEL = 'users.User'
+
+CORSORIGIN_ALLOW_ALL = True
