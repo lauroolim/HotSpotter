@@ -62,7 +62,7 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8100",
 ]
-
+CORS_ALLOW_ALL_ORIGINS = True
 
 ROOT_URLCONF = "config.urls"
 
@@ -85,8 +85,8 @@ TEMPLATES = [
 WSGI_APPLICATION = "config.wsgi.application"
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.TokenAuthentication",
     ]
 }
 
@@ -104,7 +104,7 @@ MAP_WIDGETS = {
                 "GooglePlaceAutocompleteOptions": {
                     "componentRestrictions": {"country": "br"}
                 },
-                "mapCenterLocationName": "Palmas"
+                "mapCenterLocationName": "Palmas",
             },
         },
     },
@@ -114,7 +114,7 @@ MAP_WIDGETS = {
 
 DATABASES = {
     "default": {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        "ENGINE": "django.contrib.gis.db.backends.postgis",
         "NAME": config("POSTGRES_DB"),
         "USER": "postgres",
         "PASSWORD": config("POSTGRES_PASSWORD"),
@@ -160,7 +160,7 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
-LOGIN_URL = '/auth/login/'
+LOGIN_URL = "/auth/login/"
 
 LOGIN_REDIRECT_URL = "report"
 
@@ -175,6 +175,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 GOOGLE_API_KEY = config("GOOGLE_API_KEY")
 
-AUTH_USER_MODEL = 'users.User'
+AUTH_USER_MODEL = "users.User"
 
 CORSORIGIN_ALLOW_ALL = True
