@@ -8,7 +8,7 @@
 
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">{{ report.title }}</h5>
+            <h5 class="card-title">{{ report.get_title_display }}</h5>
             <p class="card-text"><strong>Descrição:</strong> {{ report.description }}</p>
             <p class="card-text"><strong>Localização:</strong> {{ report.address }}</p>
             {% if report.foto %}

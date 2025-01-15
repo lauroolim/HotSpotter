@@ -9,11 +9,11 @@
 
     {{ form.media }}
 
-    <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+    <form method="post" enctype="multipart/form-data" class="needs-validation bg-light p-4 w-100 mx-auto"  novalidate>
         {% csrf_token %}
         
         <div class="mb-3">
-            <label for="{{ form.title.id_for_label }}" class="form-label">Título:</label>
+            <label for="{{ form.title.id_for_label }}" class="form-label text-black" >Título:</label>
             {{ form.title }}
             <div class="invalid-feedback">
                 Por favor, forneça um título.
@@ -21,7 +21,7 @@
         </div>
         
         <div class="mb-3">
-            <label for="{{ form.description.id_for_label }}" class="form-label">Descrição:</label>
+            <label for="{{ form.description.id_for_label }}" class="form-label text-black">Descrição:</label>
             {{ form.description }}
             <div class="invalid-feedback">
                 Por favor, forneça uma descrição.
@@ -29,12 +29,12 @@
         </div>
 
         <div class="mb-3">
-            <label for="{{ form.location.id_for_label }}" class="form-label">Localização:</label>
+            <label for="{{ form.location.id_for_label }}" class="form-label text-black">Localização:</label>
             {{ form.location }}
         </div>
 
         <div class="mb-3">
-            <label for="{{ form.foto.id_for_label }}" class="form-label">Foto:</label>
+            <label for="{{ form.foto.id_for_label }}" class="form-label text-black">Foto:</label>
             {{ form.foto }}
             <div class="invalid-feedback">
                 Por favor, envie uma foto.
